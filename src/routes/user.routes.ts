@@ -15,6 +15,10 @@ class UserRoutes {
         this.router.get('/', this.userController.listUsers.bind(this.userController))
         return this.router;
     }
+    postRoutes(){
+        this.router.post('/auth-user', this.userController.authUser.bind(this.userController));
+        return this.router;
+    }
 }
 
 export {UserRoutes};
