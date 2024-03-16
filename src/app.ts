@@ -25,6 +25,7 @@ export class App {
     const userBaseRoute = '/user';
 
     this.app.use(userBaseRoute, userRoutes.getRoutes());
+    this.app.use(userBaseRoute, userRoutes.postRoutes());
   
   }
 
