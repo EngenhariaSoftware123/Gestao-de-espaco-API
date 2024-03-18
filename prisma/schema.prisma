@@ -17,6 +17,38 @@ model User{
   id Int @id @default(autoincrement())
   email String @unique
   roles String[] 
-  favorites_spaces Int[]
+  favorite_spaces Space[] @relation("FavoriteSpaces") 
+  Maintenance Maintenance?
+}
+
+model Maintenance{
+  id Int @id @default(autoincrement())
+  likes Int @default(0)
+  description String
+  status String @default("ABERTO")
+  spaceId Int @unique 
+  Space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  userId Int @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Space{
+  id Int @id @default(autoincrement())
+  name String
+  service String
+  acessibility String[]
+  capacity Int
+  Available_equipment Available_equipment[]
+  Maintenance Maintenance?
+  users       User[]  @relation("FavoriteSpaces")
+  
+}
+
+model Available_equipment{
+  id Int @id @default(autoincrement())
+  name String 
+  quantity Int
+  spaceId Int  @unique
+  space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
 }
 

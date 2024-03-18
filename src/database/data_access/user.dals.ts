@@ -1,12 +1,12 @@
-import { prisma } from './prisma.databases';
-import { IUserCreate, IUserUpdate } from '../interfaces/user.interfaces';
+import { prisma } from '../prisma.databases';
+import { IUserCreate, IUserUpdate } from '../../interfaces/user.interfaces';
 class UserDALs{
     async createUser({email, role, favorites_space}: IUserCreate){
         const result = await prisma.user.create({
             data:{
                 email: email,
                 roles: role,
-                favorites_spaces: favorites_space,
+                
             }
         })
 
@@ -16,6 +16,15 @@ class UserDALs{
         const result = await prisma.user.findUnique({
             where:{
                 email: email,
+            }
+        })
+
+        return result;
+    }
+     async findUserById(id: number){
+        const result = await prisma.user.findUnique({
+            where:{
+                id: id,
             }
         })
 
@@ -31,9 +40,6 @@ class UserDALs{
                 roles: {
                     set: role
                 },
-                favorites_spaces: {
-                    set: favorites_space,
-                }
 
             }
         })
