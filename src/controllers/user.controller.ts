@@ -10,10 +10,7 @@ class UserControllers {
         const result = await this.userServices.authUsers(email);
         return response.status(200).json(result);
     }
-    async listUsers(request: Request, response: Response, next: NextFunction){
-        const result = await this.userServices.listUsers();
-        return response.status(201).json(result);
-    }
+    
 }
 
 export {UserControllers};

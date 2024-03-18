@@ -1,4 +1,5 @@
-import {UserDALs} from '../data_access/user.dals';
+import {UserDALs} from '../database/data_access/user.dals';
+import { BadRequestError } from '../helpers/error.helpers';
 class UserServices{
 
     userDALs: UserDALs;
@@ -7,6 +8,9 @@ class UserServices{
     }
     async authUsers(email: string){
         const user = await this.userDALs.findUserByEmail(email);
+        if(!email.endsWith("@uesb.edu.br")){
+            throw new BadRequestError({message: "email não tem o dominio @uesb.edu.br"})
+        }
 
         if(user){
             let updateRole = user.roles;
@@ -20,9 +24,7 @@ class UserServices{
         const createUser = await this.userDALs.createUser({email: email, role: createRole, favorites_space: [] });
         return createUser;
     }
-    async listUsers(){
-        return {message: "hello from server"};
-    }
+    
 }
 
 export {UserServices}

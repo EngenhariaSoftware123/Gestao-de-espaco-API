@@ -12,7 +12,7 @@ class UserRoutes {
     }
 
     getRoutes() {
-        this.router.get('/', this.userController.listUsers.bind(this.userController))
+       
         return this.router;
     }
     postRoutes(){

@@ -1,6 +1,7 @@
 import 'express-async-errors';
 import express, { Application } from 'express';
 import { UserRoutes } from './routes/user.routes';
+import {MaintenanceRoutes} from './routes/maintenance.routes'
 import { errorMiddleware } from './middlewares/error.middlewares';
 
 import { CorsMiddleware } from './server';
@@ -29,8 +30,16 @@ export class App {
   
   }
 
+  private setupMaintenanceRoutes() {
+    const maintenanceRoutes = new MaintenanceRoutes();
+    const maintenanceBaseRoute = '/maintenance';
+    this.app.use(maintenanceBaseRoute, maintenanceRoutes.postRoutes());
+  
+  }
+
   private setupAllRoutes() {
     this.setupUserRoutes();
+    this.setupMaintenanceRoutes();
     
   }
 
