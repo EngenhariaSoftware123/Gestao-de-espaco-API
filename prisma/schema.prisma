@@ -35,10 +35,11 @@ model Maintenance{
 model Space{
   id Int @id @default(autoincrement())
   name String
-  service String
+  typeRoom String?
+  pavilion String
   acessibility String[]
   capacity Int
-  Available_equipment Available_equipment[]
+  Available_equipment Available_equipment[] 
   Maintenance Maintenance?
   users       User[]  @relation("FavoriteSpaces")
   
@@ -48,7 +49,7 @@ model Available_equipment{
   id Int @id @default(autoincrement())
   name String 
   quantity Int
-  spaceId Int  @unique
+  spaceId Int  
   space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
 }
 
