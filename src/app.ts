@@ -2,6 +2,7 @@ import 'express-async-errors';
 import express, { Application } from 'express';
 import { UserRoutes } from './routes/user.routes';
 import {MaintenanceRoutes} from './routes/maintenance.routes'
+import {SpaceRoutes} from "./routes/space.routes"
 import { errorMiddleware } from './middlewares/error.middlewares';
 
 import { CorsMiddleware } from './server';
@@ -36,10 +37,18 @@ export class App {
     this.app.use(maintenanceBaseRoute, maintenanceRoutes.postRoutes());
   
   }
+   private setupSpaceRoutes() {
+    const spaceRoutes = new SpaceRoutes();
+    const spaceBaseRoute = '/space';
+    this.app.use(spaceBaseRoute, spaceRoutes.postRoutes());
+    this.app.use(spaceBaseRoute, spaceRoutes.getRoutes());
+  
+  }
 
   private setupAllRoutes() {
     this.setupUserRoutes();
     this.setupMaintenanceRoutes();
+    this.setupSpaceRoutes();
     
   }
 
