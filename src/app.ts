@@ -28,6 +28,7 @@ export class App {
 
     this.app.use(userBaseRoute, userRoutes.getRoutes());
     this.app.use(userBaseRoute, userRoutes.postRoutes());
+    this.app.use(userBaseRoute, userRoutes.putRoutes());
   
   }
 
