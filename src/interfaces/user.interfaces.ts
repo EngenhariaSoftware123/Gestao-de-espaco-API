@@ -10,3 +10,13 @@ export interface IUserUpdate{
     role: string[];
     favorites_space: Space[];
 }
+
+export interface IFavoriteSpace{
+    id: number;
+    spaceId: number;
+}
+
+export interface IFavoriteData{
+    email: string;
+    spaceId: number;
+}

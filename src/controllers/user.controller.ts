@@ -10,7 +10,22 @@ class UserControllers {
         const result = await this.userServices.authUsers(email);
         return response.status(200).json(result);
     }
-    
+
+   async favoriteSpace(request: Request, response: Response, next: NextFunction){
+        const {email, spaceId} = request.body;
+        const result = await this.userServices.favoriteSpaces({email, spaceId});
+        return response.status(200).json(result);
+    }
+    async unFavoriteSpace(request: Request, response: Response, next: NextFunction){
+        const {email, spaceId} = request.body;
+        const result = await this.userServices.unFavoriteSpaces({email, spaceId});
+        return response.status(200).json(result);
+    }
+    async findUserByEmail(request: Request, response: Response, next: NextFunction){
+        const {email} = request.params;
+        const result = await this.userServices.findUserByEmail(email);
+        return response.status(200).json(result);
+    }
 }
 
 export {UserControllers};
