@@ -4,7 +4,7 @@ import {App} from './app';
 export type CorsMiddleware = (req: Request, res: Response, next: NextFunction) => void;
 
 const corsConfig: CorsMiddleware = (req, res, next) => {
-    const allowedOrigins = ['http://localhost:3000'];
+    const allowedOrigins = ['*'];
     const origin = req.headers.origin;
 
     if (allowedOrigins.includes(origin || '')) {
