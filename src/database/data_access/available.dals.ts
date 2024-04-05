@@ -19,5 +19,14 @@ class Available_equipmentsDALs{
 
         return result;
     }
+
+    async deleteAvailableBySpaceId(spaceid: number){
+        const result = await prisma.available_equipment.deleteMany({
+            where:{
+                spaceId: spaceid,
+            }
+        });
+        return result;
+    }
 }
 export {Available_equipmentsDALs}

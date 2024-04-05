@@ -19,6 +19,11 @@ class SpaceRoutes {
         this.router.post('/create-space', this.spaceController.createSpace.bind(this.spaceController));
         return this.router;
     }
+
+    putRoutes(){
+        this.router.put('/update-space/:id', this.spaceController.updateSpace.bind(this.spaceController) );
+        return this.router;   
+    }       
 }
 
 export {SpaceRoutes};

@@ -19,6 +19,28 @@ model User{
   roles String[] 
   favorite_spaces Space[] @relation("FavoriteSpaces") 
   Maintenance Maintenance?
+  Teacher Teacher?
+  Sector Sector?
+}
+
+model Teacher{
+  id Int @id @default(autoincrement())
+  enrollment String @unique
+  contact String 
+  name String 
+  department String
+  userId Int @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+model Sector{
+  id Int @id @default(autoincrement())
+  name String
+  contact String  
+  acronym   String
+  spaceId Int @unique 
+  userId Int @unique
+  Space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Maintenance{
@@ -42,6 +64,7 @@ model Space{
   Available_equipment Available_equipment[] 
   Maintenance Maintenance?
   users       User[]  @relation("FavoriteSpaces")
+  Sector Sector?
   
 }
 

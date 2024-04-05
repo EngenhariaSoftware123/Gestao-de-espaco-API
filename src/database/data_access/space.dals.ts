@@ -1,5 +1,5 @@
 import { prisma } from "../prisma.databases";
-import {ISpaceCreate} from "../../interfaces/space.interface"
+import {ISpaceCreate, ISpaceUpdate} from "../../interfaces/space.interface"
 
 class SpaceDALs{
     constructor(){
@@ -27,6 +27,23 @@ class SpaceDALs{
         const result = await prisma.space.findUnique({
             where:{
                 id: id,
+            }
+        });
+
+        return result;
+    }
+
+    async updateSpace({id, name, typeRoom, pavilion, acessibility, capacity}: ISpaceUpdate){
+        const result = await prisma.space.update({
+            where:{
+                id: id,
+            },
+            data:{
+                name,
+                typeRoom,
+                pavilion,
+                acessibility,
+                capacity
             }
         });
 

@@ -15,5 +15,12 @@ class SpaceController{
        const result = await this.spaceServices.getSpace(); 
         return response.status(200).json(result);
     }
+    async updateSpace(request: Request, response: Response, next: NextFunction){
+        const {id} = request.params;
+        const {name, typeRoom, capacity, available_equipments, pavilion, acessibility} = request.body;
+        
+        const result = await this.spaceServices.updateSpace(Number(id), {name, typeRoom, capacity, available_equipments, pavilion, acessibility});
+        return response.status(200).json(result);
+    }
 }
 export {SpaceController}
