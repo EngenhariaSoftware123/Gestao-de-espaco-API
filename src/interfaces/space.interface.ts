@@ -15,3 +15,12 @@ export interface ISpaceData{
     capacity: number;
     available_equipments: Available_equipment[];
 }
+
+export interface ISpaceUpdate{
+    id: number;
+    name: string;
+    typeRoom: string;
+    pavilion: string;
+    acessibility: string[]; 
+    capacity: number;
+}

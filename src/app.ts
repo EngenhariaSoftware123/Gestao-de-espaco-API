@@ -3,6 +3,8 @@ import express, { Application } from 'express';
 import { UserRoutes } from './routes/user.routes';
 import {MaintenanceRoutes} from './routes/maintenance.routes'
 import {SpaceRoutes} from "./routes/space.routes"
+import {TeacherRoutes} from "./routes/teacher.routes"
+import {SectorRoutes} from "./routes/sector.routes"
 import { errorMiddleware } from './middlewares/error.middlewares';
 
 import { CorsMiddleware } from './server';
@@ -43,6 +45,22 @@ export class App {
     const spaceBaseRoute = '/space';
     this.app.use(spaceBaseRoute, spaceRoutes.postRoutes());
     this.app.use(spaceBaseRoute, spaceRoutes.getRoutes());
+     this.app.use(spaceBaseRoute, spaceRoutes.putRoutes());
+  
+  }
+  private setupTeacherRoutes() {
+    const teacherRoutes = new TeacherRoutes();
+    const teacherBaseRoute = '/teacher';
+    this.app.use(teacherBaseRoute, teacherRoutes.postRoutes());
+    
+  
+  }
+
+   private setupSectorRoutes() {
+    const sectorRoutes = new SectorRoutes();
+    const sectorBaseRoute = '/sector';
+    this.app.use(sectorBaseRoute, sectorRoutes.postRoutes());
+    
   
   }
 
@@ -50,6 +68,8 @@ export class App {
     this.setupUserRoutes();
     this.setupMaintenanceRoutes();
     this.setupSpaceRoutes();
+    this.setupTeacherRoutes();
+    this.setupSectorRoutes();
     
   }
 

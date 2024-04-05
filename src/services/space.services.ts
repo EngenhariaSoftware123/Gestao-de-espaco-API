@@ -1,7 +1,7 @@
 import {SpaceDALs} from "../database/data_access/space.dals"
 import { Available_equipmentsDALs } from "../database/data_access/available.dals"
 import { ISpaceData } from "../interfaces/space.interface";
-import {BadRequestError} from "../helpers/error.helpers"
+import {BadRequestError, NotFoundError} from "../helpers/error.helpers"
 
 class SpaceServices{
     spaceDALs: SpaceDALs;
@@ -53,6 +53,38 @@ class SpaceServices{
             
         }));
         return spaceArray;
+    }
+
+    async updateSpace(id: number, {name, typeRoom, capacity, available_equipments, pavilion, acessibility}: ISpaceData){
+            const space = await this.spaceDALs.findSpaceById(id);
+
+            if(!space){
+                throw new NotFoundError({message: 'espaço não encontrado'});
+            }
+
+            const updateSpace = await this.spaceDALs.updateSpace({id, name, typeRoom, capacity, pavilion, acessibility})
+            const deleteAvailables = await this.available_equipmentsDALS.deleteAvailableBySpaceId(space.id);
+
+            let equipments: any[] = [];
+         await Promise.all(
+        available_equipments.map(async (availableEquipament)=>{
+            const {name, quantity} = availableEquipament;
+            
+            let result = await this.available_equipmentsDALS.createAvailable({name, quantity,  spaceId: space.id})
+            if(result){
+                equipments.push(result);
+            }
+            
+            
+            
+            
+        }));
+
+        return {
+            updateSpace,
+            equipments
+        }
+
     }
 
 }
