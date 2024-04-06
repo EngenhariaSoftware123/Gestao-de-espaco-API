@@ -5,6 +5,7 @@ import {MaintenanceRoutes} from './routes/maintenance.routes'
 import {SpaceRoutes} from "./routes/space.routes"
 import {TeacherRoutes} from "./routes/teacher.routes"
 import {SectorRoutes} from "./routes/sector.routes"
+import {ManagerRoutes} from "./routes/manager.routes"
 import { errorMiddleware } from './middlewares/error.middlewares';
 
 import { CorsMiddleware } from './server';
@@ -63,6 +64,13 @@ export class App {
     
   
   }
+  private setupManagerRoutes() {
+    const managerRoutes = new ManagerRoutes();
+    const managerBaseRoute = '/manager';
+    this.app.use(managerBaseRoute, managerRoutes.postRoutes());
+    
+  
+  }
 
   private setupAllRoutes() {
     this.setupUserRoutes();
@@ -70,6 +78,7 @@ export class App {
     this.setupSpaceRoutes();
     this.setupTeacherRoutes();
     this.setupSectorRoutes();
+    this.setupManagerRoutes();
     
   }
 
