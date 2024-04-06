@@ -18,7 +18,7 @@ model User{
   email String @unique
   roles String[] 
   favorite_spaces Space[] @relation("FavoriteSpaces") 
-  Maintenance Maintenance?
+  Maintenance Maintenance[]
   Teacher Teacher?
   Sector Sector?
   Manager Manager?
@@ -59,9 +59,9 @@ model Maintenance{
   likes Int @default(0)
   description String
   status String @default("ABERTO")
-  spaceId Int @unique 
+  spaceId Int 
   Space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
-  userId Int @unique
+  userId Int 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -73,7 +73,7 @@ model Space{
   acessibility String[]
   capacity Int
   Available_equipment Available_equipment[] 
-  Maintenance Maintenance?
+  Maintenance Maintenance[]
   users       User[]  @relation("FavoriteSpaces")
   Sector Sector?
   Manager Manager?
