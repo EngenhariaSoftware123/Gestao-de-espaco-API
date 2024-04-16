@@ -22,6 +22,7 @@ model User{
   Teacher Teacher?
   Sector Sector?
   Manager Manager?
+  space_request Space_request[]
 }
 
 model Teacher{
@@ -77,6 +78,7 @@ model Space{
   users       User[]  @relation("FavoriteSpaces")
   Sector Sector?
   Manager Manager?
+  space_Request Space_request[]
   
 }
 
@@ -86,5 +88,16 @@ model Available_equipment{
   quantity Int
   spaceId Int  
   space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+}
+
+model Space_request{
+   id Int @id @default(autoincrement())
+   spaceId Int 
+   initial_Period DateTime
+   end_Period DateTime
+   userId Int
+   status String @default("EM ANDAMENTO")
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+   space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
 }
 

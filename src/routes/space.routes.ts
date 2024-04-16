@@ -13,15 +13,18 @@ class SpaceRoutes {
 
     getRoutes() {
        this.router.get('/get-spaces', this.spaceController.getSpaces.bind(this.spaceController));
+       this.router.get('/get-space-requests/:email', this.spaceController.getSpaceRequests.bind(this.spaceController));
         return this.router;
     }
     postRoutes(){
         this.router.post('/create-space', this.spaceController.createSpace.bind(this.spaceController));
+        this.router.post('/create-space-request', this.spaceController.createSpaceRequest.bind(this.spaceController));
         return this.router;
     }
 
     putRoutes(){
-        this.router.put('/update-space/:id', this.spaceController.updateSpace.bind(this.spaceController) );
+        this.router.put('/update-space/:id', this.spaceController.updateSpace.bind(this.spaceController));
+         this.router.put('/cancel-space-request/:id', this.spaceController.cancelSpaceRequests.bind(this.spaceController));
         return this.router;   
     }       
 }
