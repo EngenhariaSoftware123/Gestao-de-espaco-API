@@ -17,14 +17,15 @@ class SpaceServices {
     this.userDALs = new UserDALs();
   }
 
-  async createSpace({
-    name,
-    typeRoom,
-    capacity,
-    available_equipments,
-    pavilion,
-    acessibility,
-  }: ISpaceData) {
+ async createSpace({
+  name,
+  typeRoom,
+  capacity,
+  available_equipments,
+  pavilion,
+  acessibility,
+}: ISpaceData) {
+
     const createdSpace = await this.spaceDALs.createSpace({
       name,
       typeRoom,
@@ -34,20 +35,26 @@ class SpaceServices {
     });
 
     if (!createdSpace) {
-      throw new BadRequestError({ message: "espaço não foi criado" });
+      throw new Error("Space was not created");
     }
+
     let equipments: any[] = [];
+    let result;
+    let available = available_equipments;
     await Promise.all(
-      available_equipments.map(async (availableEquipament) => {
+       available.map(async availableEquipament => {
         const { name, quantity } = availableEquipament;
 
-        let result = await this.available_equipmentsDALS.createAvailable({
+         result = await this.available_equipmentsDALS.createAvailable({
           name,
           quantity,
           spaceId: createdSpace.id,
         });
-        if (result) {
-          equipments.push(result);
+        if (!result) {
+            console.log("erro")
+        }
+        else{
+           equipments.push(result);
         }
       })
     );
@@ -56,7 +63,8 @@ class SpaceServices {
       createdSpace,
       equipments,
     };
-  }
+}
+
 
   async getSpace() {
     const spaces = await this.spaceDALs.findSpaces();
@@ -178,6 +186,10 @@ async getSpaceRequest(email: string){
 async cancelSpaceRequest(id: number){
   const cancelSpace = await this.spaceRequestDALs.updateStatusSpaceRequest({id, status: "CANCELADO"});
   return cancelSpace;
+}
+async deleteSpace(spaceId: number){
+  const deleteSpace = await this.spaceDALs.deleteSpace(spaceId);
+  return deleteSpace;
 }
 
 }
