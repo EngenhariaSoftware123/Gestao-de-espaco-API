@@ -46,8 +46,8 @@ export class App {
     const spaceBaseRoute = '/space';
     this.app.use(spaceBaseRoute, spaceRoutes.postRoutes());
     this.app.use(spaceBaseRoute, spaceRoutes.getRoutes());
-     this.app.use(spaceBaseRoute, spaceRoutes.putRoutes());
-  
+    this.app.use(spaceBaseRoute, spaceRoutes.putRoutes());
+    this.app.use(spaceBaseRoute, spaceRoutes.deleteRoutes());
   }
   private setupTeacherRoutes() {
     const teacherRoutes = new TeacherRoutes();

@@ -49,6 +49,12 @@ class SpaceDALs{
 
         return result;
     }
+    async deleteSpace(spaceId: number){
+        const result = await prisma.space.delete({
+            where:{id: spaceId}
+        });
+        return result;
+    }
 }
 
 export {SpaceDALs};
