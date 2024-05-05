@@ -58,6 +58,11 @@ class SectorServices {
     
     
   }
+
+   async findSectors(){
+    const result = await this.sectorDALs.findSectors();
+    return result;
+  }
 }
 
 export { SectorServices };

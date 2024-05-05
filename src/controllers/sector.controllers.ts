@@ -11,6 +11,10 @@ class SectorControllers{
         const result = await this.sectorServices.createSector({name, spaceId, contact, email, acronym });
         return response.status(200).json(result);
     }
+    async findSector(request: Request, response: Response, next: NextFunction){
+        const result = await this.sectorServices.findSectors();
+        return response.status(200).json(result);
+    }
 }
 
 export {SectorControllers};

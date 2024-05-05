@@ -191,6 +191,14 @@ async deleteSpace(spaceId: number){
   const deleteSpace = await this.spaceDALs.deleteSpace(spaceId);
   return deleteSpace;
 }
+async changeStatusSpaceRequest({id, status}: ISpaceRequestUpdateStatus){
+  const spaceRequest = await this.spaceRequestDALs.findSpaceRequestById(id);
+  if(!spaceRequest){
+    throw new NotFoundError({message: "requisição de espaço não encontrada"});
+  }
+  const updatedSpaceRequest = await this.spaceRequestDALs.updateStatusSpaceRequest({id, status});
+  return updatedSpaceRequest;
+}
 
 }
 

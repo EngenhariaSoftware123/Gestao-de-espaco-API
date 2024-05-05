@@ -13,6 +13,7 @@ class SectorRoutes {
     }
 
     getRoutes() {
+        this.router.get('/get-sectors', this.sectorControllers.findSector.bind(this.sectorControllers));
         return this.router;
     }
     postRoutes(){
