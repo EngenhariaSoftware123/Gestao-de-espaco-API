@@ -63,6 +63,13 @@ class SpaceRequestDALs {
 
     return result;
   }
+  async findSpaceRequestById(id: number){
+    const result = await prisma.space_request.findUnique({
+      where: {id: id},
+    });
+
+    return result;
+  }
 
   async updateStatusSpaceRequest({id, status}: ISpaceRequestUpdateStatus){
     const result = await prisma.space_request.update({

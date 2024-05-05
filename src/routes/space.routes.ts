@@ -25,7 +25,8 @@ class SpaceRoutes {
     putRoutes(){
         this.router.put('/update-space/:id', this.spaceController.updateSpace.bind(this.spaceController));
          this.router.put('/cancel-space-request/:id', this.spaceController.cancelSpaceRequests.bind(this.spaceController));
-        return this.router;   
+        this.router.put('/update-status-space-request/:id', this.spaceController.updateStatusSpaceRequest.bind(this.spaceController));
+         return this.router;   
     }  
     deleteRoutes(){
         this.router.delete('/delete-space/:id', this.spaceController.deleteSpace.bind(this.spaceController));

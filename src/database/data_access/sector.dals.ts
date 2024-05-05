@@ -23,6 +23,11 @@ class SectorDALs {
     return result;
   }
 
+  async findSectors(){
+    const result = await prisma.manager.findMany();
+    return result;
+  }
+
 }
 
 export { SectorDALs };
