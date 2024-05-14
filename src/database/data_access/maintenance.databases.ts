@@ -11,6 +11,11 @@ class MaintenanceDALs{
         })
         return result;
     }
+    async getMaintenances(){
+        const results =await prisma.maintenance.findMany();
+
+        return results;
+    }
     
 }
 export {MaintenanceDALs}

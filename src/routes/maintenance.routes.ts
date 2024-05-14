@@ -12,7 +12,7 @@ class   MaintenanceRoutes {
     }
 
     getRoutes() {
-       
+       this.router.get('/get-maintenance', this.maintenanceController.getMaintenances.bind(this.maintenanceController));
         return this.router;
     }
     postRoutes(){

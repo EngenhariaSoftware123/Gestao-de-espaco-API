@@ -10,6 +10,10 @@ class MaintenanceControllers {
         const result = await this.maintenanceServices.createMaintenance({email, spaceId, description})
         return response.status(200).json(result);
     }
+    async getMaintenances(request: Request, response: Response, next: NextFunction){
+        const result = await this.maintenanceServices.getMaintenance();
+        return response.status(200).json(result);
+    }
     
 }
 

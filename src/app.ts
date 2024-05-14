@@ -39,7 +39,7 @@ export class App {
     const maintenanceRoutes = new MaintenanceRoutes();
     const maintenanceBaseRoute = '/maintenance';
     this.app.use(maintenanceBaseRoute, maintenanceRoutes.postRoutes());
-  
+    this.app.use(maintenanceBaseRoute, maintenanceRoutes.getRoutes());
   }
    private setupSpaceRoutes() {
     const spaceRoutes = new SpaceRoutes();

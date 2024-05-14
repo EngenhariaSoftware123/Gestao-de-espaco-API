@@ -28,6 +28,13 @@ class MaintenanceService{
 
         return createdMaintenance;
     }
+
+    async getMaintenance(){
+
+       const maintenances = await this.maintenanceDALs.getMaintenances();
+        return maintenances;
+
+    }
 }
 
 export{MaintenanceService}
