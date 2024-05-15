@@ -8,3 +8,8 @@ export interface IMaintenanceData{
     spaceId: number;
     description: string;
 }
+
+export interface IMaintenanceUpdate{
+     id: number;
+    status: string;
+}

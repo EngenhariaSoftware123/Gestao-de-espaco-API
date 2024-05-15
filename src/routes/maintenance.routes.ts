@@ -12,11 +12,15 @@ class   MaintenanceRoutes {
     }
 
     getRoutes() {
-       
+       this.router.get('/get-maintenance', this.maintenanceController.getMaintenances.bind(this.maintenanceController));
         return this.router;
     }
     postRoutes(){
         this.router.post('/create-maintenance', this.maintenanceController.createMaintenance.bind(this.maintenanceController));
+        return this.router;
+    }
+    putRoutes(){
+        this.router.put('/update-status-maintenance/:id', this.maintenanceController.updateMaintenance.bind(this.maintenanceController));
         return this.router;
     }
 }
