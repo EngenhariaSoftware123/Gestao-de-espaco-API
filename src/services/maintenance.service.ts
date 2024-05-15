@@ -3,7 +3,7 @@ import {NotFoundError} from "../helpers/error.helpers"
 import { MaintenanceDALs } from "../database/data_access/maintenance.databases";
 import { SpaceDALs } from "../database/data_access/space.dals";
 import {UserDALs} from '../database/data_access/user.dals';
-import { IMaintenanceCreate, IMaintenanceData } from "../interfaces/maintenance.interfaces";
+import { IMaintenanceCreate, IMaintenanceData, IMaintenanceUpdate } from "../interfaces/maintenance.interfaces";
 class MaintenanceService{
     maintenanceDALs: MaintenanceDALs;
     spaceDALs: SpaceDALs;
@@ -34,6 +34,15 @@ class MaintenanceService{
        const maintenances = await this.maintenanceDALs.getMaintenances();
         return maintenances;
 
+    }
+    async changeStatusMaintenance({id, status}: IMaintenanceUpdate){
+        const maintenance = await this.maintenanceDALs.findMaintenance(id);
+        if(!maintenance){
+            throw new NotFoundError({message: 'manuntenção não encontrada'})
+        }  
+
+        const updatedMaintenance = await this.maintenanceDALs.changeStatusMaintenance({id, status});
+        return updatedMaintenance;
     }
 }
 

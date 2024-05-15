@@ -19,6 +19,10 @@ class   MaintenanceRoutes {
         this.router.post('/create-maintenance', this.maintenanceController.createMaintenance.bind(this.maintenanceController));
         return this.router;
     }
+    putRoutes(){
+        this.router.put('/update-status-maintenance/:id', this.maintenanceController.updateMaintenance.bind(this.maintenanceController));
+        return this.router;
+    }
 }
 
 export {MaintenanceRoutes};

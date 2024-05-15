@@ -14,6 +14,13 @@ class MaintenanceControllers {
         const result = await this.maintenanceServices.getMaintenance();
         return response.status(200).json(result);
     }
+
+    async updateMaintenance(request: Request, response: Response, next: NextFunction){
+        const {id} = request.params;
+        const {status} = request.body;
+        const result = await this.maintenanceServices.changeStatusMaintenance({id: Number(id), status});
+        return response.status(200).json(result);
+    }
     
 }
 
