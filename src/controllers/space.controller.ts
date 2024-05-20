@@ -101,6 +101,15 @@ class SpaceController {
     const result = await this.spaceServices.deleteSpace(Number(id));
     return response.status(200).json(result);
   }
+  async getAllSpaceRequests(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
+ 
+    const result = await this.spaceServices.getAllSpaceRequest();
+    return response.status(200).json(result);
+  }
   
 }
 export { SpaceController };

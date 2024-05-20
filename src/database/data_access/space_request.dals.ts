@@ -70,6 +70,10 @@ class SpaceRequestDALs {
 
     return result;
   }
+  async findAllSpacesRequests(){
+    const result = await prisma.space_request.findMany();
+    return result;
+  }
 
   async updateStatusSpaceRequest({id, status}: ISpaceRequestUpdateStatus){
     const result = await prisma.space_request.update({
