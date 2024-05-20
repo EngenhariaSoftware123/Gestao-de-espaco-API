@@ -183,6 +183,11 @@ async getSpaceRequest(email: string){
     return space_request;
 }
 
+async getAllSpaceRequest(){
+    const space_request = await this.spaceRequestDALs.findAllSpacesRequests();
+    return space_request;
+}
+
 async cancelSpaceRequest(id: number){
   const cancelSpace = await this.spaceRequestDALs.updateStatusSpaceRequest({id, status: "CANCELADO"});
   return cancelSpace;
