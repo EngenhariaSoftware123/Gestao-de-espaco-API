@@ -4,6 +4,7 @@ export interface ITeacherCreate{
   contact: string;
   userId: number;
   department: string;
+  subject: string;
 }
 export interface ITeacherData{
   name: string;
@@ -11,4 +12,5 @@ export interface ITeacherData{
   contact: string;
   email: string;
   department: string;
+  subject: string;
 }
