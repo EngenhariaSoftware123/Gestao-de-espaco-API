@@ -10,7 +10,7 @@ class TeacherServices {
     this.userDALs = new UserDALs();
     this.teacherDALs = new TeacherDALs();
   }
-  async createTeacher({ name, enrollment, contact, email, department }: ITeacherData) {
+  async createTeacher({ name, enrollment, contact, email, department, subject }: ITeacherData) {
     const user = await this.userDALs.findUserByEmail(email);
     let userId;
     if (!email.endsWith("@uesb.edu.br")) {
@@ -47,7 +47,7 @@ class TeacherServices {
         userId = createUser.id;
     }
 
-    const createTeacher = await this.teacherDALs.createTeacher({name, department, contact, userId, enrollment});
+    const createTeacher = await this.teacherDALs.createTeacher({name, department, contact, userId, enrollment, subject});
 
     return createTeacher;
     

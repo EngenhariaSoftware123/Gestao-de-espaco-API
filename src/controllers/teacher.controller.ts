@@ -7,8 +7,8 @@ class TeacherController{
     }
 
     async createTeacher(request: Request, response: Response, next: NextFunction){
-        const {name, enrollment, contact, email, department} = request.body;
-        const result = await this.teacherServices.createTeacher({name, enrollment, contact, email, department});
+        const {name, enrollment, contact, email, department, subject} = request.body;
+        const result = await this.teacherServices.createTeacher({name, enrollment, contact, email, department, subject});
         return response.status(200).json(result);
     }
 }

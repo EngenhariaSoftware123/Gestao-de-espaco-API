@@ -8,6 +8,7 @@ class TeacherDALs {
     contact,
     userId,
     enrollment,
+    subject,
   }: ITeacherCreate) {
     const result = await prisma.teacher.create({
       data: {
@@ -16,6 +17,7 @@ class TeacherDALs {
         contact,
         userId,
         enrollment,
+        subject,
       },
     });
 
