@@ -13,7 +13,6 @@ CREATE TABLE "Teacher" (
     "enrollment" TEXT NOT NULL,
     "contact" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "subject" TEXT NOT NULL,
     "department" TEXT NOT NULL,
     "userId" INTEGER NOT NULL,
 
