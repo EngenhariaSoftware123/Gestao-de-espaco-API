@@ -15,6 +15,7 @@ class SpaceRoutes {
        this.router.get('/get-spaces', this.spaceController.getSpaces.bind(this.spaceController));
        this.router.get('/get-space-requests/:email', this.spaceController.getSpaceRequests.bind(this.spaceController));
         this.router.get('/get-space-requests', this.spaceController.getAllSpaceRequests.bind(this.spaceController));
+        this.router.get('/get-space/:id', this.spaceController.getSpace.bind(this.spaceController));
        return this.router;
     }
     postRoutes(){

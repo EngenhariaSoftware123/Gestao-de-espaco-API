@@ -82,6 +82,11 @@ class SpaceServices {
     return spaceArray;
   }
 
+  async getSpaceId(id: number){
+    const result = this.spaceDALs.findSpaceById(id);
+    return result;
+  }
+
   async updateSpace(
     id: number,
     {
