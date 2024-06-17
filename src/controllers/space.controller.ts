@@ -29,6 +29,13 @@ class SpaceController {
     const result = await this.spaceServices.getSpace();
     return response.status(200).json(result);
   }
+
+  async getSpace(request: Request, response: Response, next: NextFunction) {
+    const {id} = request.params;
+    const result = await this.spaceServices.getSpaceId(Number(id));
+    return response.status(200).json(result);
+  }
+
   async updateSpace(request: Request, response: Response, next: NextFunction) {
     const { id } = request.params;
     const {
