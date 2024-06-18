@@ -5,6 +5,7 @@ import { ITeacherData } from "../interfaces/teacher.interface";
 import { IManagerData} from "../interfaces/manager.interfaces";
 import { ManagerDALs} from "../database/data_access/manager.dals"
 import { SpaceDALs} from "../database/data_access/space.dals"
+import { IManagerFindData } from "../interfaces/manager.interfaces";
 class ManagerServices {
   userDALs: UserDALs;
   managerDALs: ManagerDALs;
@@ -56,6 +57,17 @@ class ManagerServices {
     return createdManager;
     
     
+  }
+
+  async findManager({email, type}: IManagerFindData){
+      const user = await this.userDALs.findUserByEmail(email);
+      if(!user){
+        throw new NotFoundError({message: 'user not found'});
+      }
+
+      const result = await this.managerDALs.findManagerByUserIdAndType({id: user.id, type});
+
+      return result;
   }
 }
 

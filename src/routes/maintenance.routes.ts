@@ -13,7 +13,8 @@ class   MaintenanceRoutes {
 
     getRoutes() {
        this.router.get('/get-maintenance', this.maintenanceController.getMaintenances.bind(this.maintenanceController));
-        return this.router;
+        this.router.get('/get-maintenance/:spaceId', this.maintenanceController.getMaintenancesById.bind(this.maintenanceController));
+       return this.router;
     }
     postRoutes(){
         this.router.post('/create-maintenance', this.maintenanceController.createMaintenance.bind(this.maintenanceController));

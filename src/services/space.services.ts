@@ -87,7 +87,15 @@ class SpaceServices {
     const available_equipments = await this.available_equipmentsDALS.findAvailablesbySpaceId(id);
     return {space: result, available_equipments: available_equipments};
   }
+  async getSpacesRequestBySpace(spaceId: number){
+     const space = await this.spaceDALs.findSpaceById(spaceId);
+     if(!space){
+      throw new NotFoundError({message: 'Espaço não encontrado'});
+     }
+     const spaceRequests = await this.spaceRequestDALs.findSpaceRequestBySpace(spaceId);
 
+     return spaceRequests;
+  }
   async updateSpace(
     id: number,
     {

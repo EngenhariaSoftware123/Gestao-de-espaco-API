@@ -35,6 +35,16 @@ class MaintenanceService{
         return maintenances;
 
     }
+
+     async getMaintenanceySpace(spaceId: number){
+        const space = await this.spaceDALs.findSpaceById(spaceId);
+        if(!space){
+            throw new NotFoundError({message: 'espaço nao encontrado'});
+        }
+       const maintenances = await this.maintenanceDALs.findMaintenanceBySpace(space.id);
+        return maintenances;
+
+    }
     async changeStatusMaintenance({id, status}: IMaintenanceUpdate){
         const maintenance = await this.maintenanceDALs.findMaintenance(id);
         if(!maintenance){

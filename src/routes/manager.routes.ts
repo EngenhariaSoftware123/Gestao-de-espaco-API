@@ -12,6 +12,7 @@ class ManagerRoutes {
     }
 
     getRoutes() {
+        this.router.get('/find-manager', this.managerControllers.findManager.bind(this.managerControllers));
         return this.router;
     }
     postRoutes(){

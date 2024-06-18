@@ -21,7 +21,11 @@ class MaintenanceControllers {
         const result = await this.maintenanceServices.changeStatusMaintenance({id: Number(id), status});
         return response.status(200).json(result);
     }
-    
+    async getMaintenancesById(request: Request, response: Response, next: NextFunction){
+        const {spaceId} = request.params;
+        const result = await this.maintenanceServices.getMaintenanceySpace(Number(spaceId));
+        return response.status(200).json(result);
+    }
 }
 
 export {MaintenanceControllers};

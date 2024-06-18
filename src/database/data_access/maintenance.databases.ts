@@ -24,7 +24,16 @@ class MaintenanceDALs{
             }
         })
         return result;
-    }   
+    } 
+    async findMaintenanceBySpace(spaceId:number){
+        const result = await prisma.maintenance.findMany({
+            where:{
+                spaceId,
+            }
+        })
+        return result;
+    } 
+
 
     async changeStatusMaintenance({id, status}: IMaintenanceUpdate){
         const result = await prisma.maintenance.update({
