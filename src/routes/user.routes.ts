@@ -22,6 +22,7 @@ class UserRoutes {
     putRoutes(){
         this.router.put('/favorite-space', this.userController.favoriteSpace.bind(this.userController));
         this.router.put('/unfavorite-space', this.userController.unFavoriteSpace.bind(this.userController));
+        this.router.put('/update-roles', this.userController.updateRoles.bind(this.userController));
         return this.router;
     }
 }
