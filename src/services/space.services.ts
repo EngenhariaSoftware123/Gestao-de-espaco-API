@@ -83,8 +83,9 @@ class SpaceServices {
   }
 
   async getSpaceId(id: number){
-    const result = this.spaceDALs.findSpaceById(id);
-    return result;
+    const result = await this.spaceDALs.findSpaceById(id);
+    const available_equipments = await this.available_equipmentsDALS.findAvailablesbySpaceId(id);
+    return {space: result, available_equipments: available_equipments};
   }
 
   async updateSpace(

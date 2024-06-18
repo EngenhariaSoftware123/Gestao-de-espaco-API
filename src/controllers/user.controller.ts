@@ -26,6 +26,11 @@ class UserControllers {
         const result = await this.userServices.findUserByEmail(email);
         return response.status(200).json(result);
     }
+     async updateRoles(request: Request, response: Response, next: NextFunction){
+        const {email, roles} = request.body;
+        const result = await this.userServices.updateRole({email, roles});
+        return response.status(200).json(result);
+    }
 }
 
 export {UserControllers};

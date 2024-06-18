@@ -20,3 +20,8 @@ export interface IFavoriteData{
     email: string;
     spaceId: number;
 }
+
+export interface IUserRoles{
+    email: string;
+    roles: string[];
+}

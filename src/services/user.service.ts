@@ -1,6 +1,6 @@
 import {UserDALs} from '../database/data_access/user.dals';
 import { BadRequestError, NotFoundError } from '../helpers/error.helpers';
-import { IFavoriteData} from '../interfaces/user.interfaces';
+import { IFavoriteData, IUserRoles} from '../interfaces/user.interfaces';
 import {SpaceDALs} from '../database/data_access/space.dals'
 
 class UserServices{
@@ -57,6 +57,15 @@ class UserServices{
     async findUserByEmail(email: string){
         const user = await this.userDALs.findUserByEmail(email);
         return user;
+    }
+    async updateRole({email, roles}: IUserRoles){
+        const user = await this.userDALs.findUserByEmail(email);
+        if(!user){
+            throw new BadRequestError({message: 'user not found'});
+        }
+        const updateUser = await this.userDALs.updateUser({id: user.id, email: email, role: roles, favorites_space: user.favorite_spaces});
+        return updateUser;
+        
     }
     
 }
