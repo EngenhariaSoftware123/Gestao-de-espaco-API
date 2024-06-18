@@ -81,6 +81,15 @@ class SpaceController {
     const result = await this.spaceServices.getSpaceRequest(email);
     return response.status(200).json(result);
   }
+  async getSpaceRequestsBySpace(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
+    const {spaceId } = request.params;
+    const result = await this.spaceServices.getSpacesRequestBySpace(Number(spaceId));
+    return response.status(200).json(result);
+  }
 
    async cancelSpaceRequests(
     request: Request,

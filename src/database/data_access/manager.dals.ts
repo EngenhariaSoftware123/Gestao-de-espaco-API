@@ -1,5 +1,6 @@
 import { prisma } from "../prisma.databases";
 import { IManagerCreate } from "../../interfaces/manager.interfaces";
+import { IManagerFind } from "../../interfaces/manager.interfaces";
 class ManagerDALs {
   constructor() {}
   async createManager({
@@ -14,6 +15,18 @@ class ManagerDALs {
         userId,
       },
     });
+
+    return result;
+  }
+
+  async findManagerByUserIdAndType({id, type}: IManagerFind){
+    const result = await prisma.manager.findUnique({
+      where:{
+        userId: id,
+        type
+      }
+      
+    })
 
     return result;
   }

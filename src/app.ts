@@ -69,6 +69,7 @@ export class App {
     const managerRoutes = new ManagerRoutes();
     const managerBaseRoute = '/manager';
     this.app.use(managerBaseRoute, managerRoutes.postRoutes());
+    this.app.use(managerBaseRoute, managerRoutes.getRoutes());
     
   
   }

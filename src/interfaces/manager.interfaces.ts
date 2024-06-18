@@ -8,3 +8,12 @@ export interface IManagerData{
     email: string;
     spaceId: number;
 }
+
+export interface IManagerFind{
+    id: number;
+    type: string;
+}
+export interface IManagerFindData{
+    email: string;
+    type: string;
+}
